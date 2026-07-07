@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Whisper Clipboard</title>
+  <link rel="stylesheet" href="/static/style.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <span class="dot" id="conn-dot"></span>
+      <h1>Whisper&nbsp;Clipboard</h1>
+    </div>
+    <div class="topbar-right">
+      <span class="chip" id="device-chip" title="Compute device">—</span>
+      <div class="hotkey-control">
+        <button id="hotkey-btn" class="hotkey-btn" type="button"
+                title="Click, then press your global push-to-talk key combo (keyboard or mouse button)">
+          <span class="hk-kbd">⌨</span><span id="hotkey-label">—</span>
+        </button>
+        <label class="switch" title="Global hotkey on/off">
+          <input type="checkbox" id="hotkey-toggle">
+          <span class="slider"></span>
+        </label>
+      </div>
+      <label class="autopaste-control" title="After transcription, paste (Ctrl+V) into the focused window">
+        <span class="ap-label">paste</span>
+        <span class="switch">
+          <input type="checkbox" id="autopaste-toggle" checked>
+          <span class="slider"></span>
+        </span>
+      </label>
+      <label class="model-pick">
+        <span>model</span>
+        <select id="model-select"></select>
+      </label>
+    </div>
+  </header>
+
+  <main>
+    <section class="stage">
+      <button id="talk" class="talk" aria-label="Hold to talk">
+        <svg class="ring" viewBox="0 0 200 200">
+          <circle class="ring-bg" cx="100" cy="100" r="92" />
+          <circle class="ring-fg" id="ring-fg" cx="100" cy="100" r="92" />
+        </svg>
+        <span class="talk-core">
+          <svg class="mic" viewBox="0 0 24 24" width="34" height="34" aria-hidden="true">
+            <path d="M12 14a3 3 0 0 0 3-3V6a3 3 0 0 0-6 0v5a3 3 0 0 0 3 3z"/>
+            <path d="M19 11a1 1 0 1 0-2 0 5 5 0 0 1-10 0 1 1 0 1 0-2 0 7 7 0 0 0 6 6.92V21a1 1 0 1 0 2 0v-3.08A7 7 0 0 0 19 11z"/>
+          </svg>
+        </span>
+      </button>
+
+      <div class="hint" id="hint">Hold the button — or hold <kbd>Space</kbd> — and speak</div>
+      <div class="status" id="status">connecting…</div>
+    </section>
+
+    <section class="result-card" id="result-card" hidden>
+      <div class="result-head">
+        <span class="result-title">Latest transcription</span>
+        <span class="badges">
+          <span class="badge badge-ok" id="copied-badge" hidden>copied ✓</span>
+          <span class="badge badge-ok" id="pasted-badge" hidden>pasted ✓</span>
+          <span class="badge badge-meta" id="meta-badge"></span>
+        </span>
+      </div>
+      <p class="result-text" id="result-text"></p>
+      <button class="ghost" id="copy-again">copy again</button>
+    </section>
+
+    <section class="history-wrap">
+      <div class="history-head">
+        <span>History</span>
+        <button class="ghost small" id="clear-history">clear</button>
+      </div>
+      <ul class="history" id="history"></ul>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <span>hold your hotkey anywhere (or Space in this tab) and speak · text auto-copies to clipboard</span>
+    <span class="sep">·</span>
+    <span id="backend-info"></span>
+  </footer>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,33 @@
+# ---- Python ----
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# ---- Virtual environments / uv ----
+.venv/
+venv/
+env/
+.uv-cache/
+
+# ---- Whisper / model weights (downloaded to HF cache, but guard anyway) ----
+*.bin
+*.pt
+*.safetensors
+*.onnx
+models/
+
+# ---- Logs / runtime ----
+*.log
+
+# ---- OS / editor ----
+.DS_Store
+Thumbs.db
+desktop.ini
+.idea/
+.vscode/
+*.swp
+*.swo

@@ -1,0 +1,39 @@
+[project]
+name = "whisper-clipboard"
+version = "0.1.0"
+description = "Real-time Whisper dictation to clipboard, GPU-accelerated (RTX 50-series ready), with a live web UI."
+readme = "README.md"
+requires-python = ">=3.10,<3.13"
+dependencies = [
+    "fastapi>=0.110",
+    "uvicorn[standard]>=0.29",
+    "faster-whisper>=1.0.3",   # primary backend (CTranslate2) — no numba, GPU-friendly
+    "torch>=2.7.0",
+    "sounddevice>=0.4.6",
+    "numpy>=1.24",
+    "pyperclip>=1.8.2",
+]
+
+# Optional extras (none needed for the default setup):
+[project.optional-dependencies]
+# System-wide push-to-talk hotkey (works even when the browser isn't focused).
+hotkey = ["pynput>=1.7.6"]
+
+[tool.uv]
+# This is a runnable app, not a library to build/ship as a wheel.
+package = false
+
+# torch MUST come from PyTorch's CUDA 12.8 index for RTX 50-series GPUs
+# (Blackwell architecture, compute capability sm_120). The stock PyPI torch
+# wheel lacks Blackwell kernels and will fail with "no kernel image available".
+# `explicit = true` keeps this index for torch-family packages only; everything
+# else still resolves from PyPI.
+[[tool.uv.index]]
+name = "pytorch-cu128"
+url = "https://download.pytorch.org/whl/cu128"
+explicit = true
+
+[tool.uv.sources]
+torch = { index = "pytorch-cu128" }
+torchaudio = { index = "pytorch-cu128" }
+torchvision = { index = "pytorch-cu128" }
