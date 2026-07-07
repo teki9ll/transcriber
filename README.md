@@ -171,3 +171,9 @@ Expect: `True NVIDIA GeForce RTX 5060 Ti` (or similar).
 - **High latency** — the default is `tiny` (fastest). Trade up to `base`, `small`, `medium`, `large-v3-turbo`, or `large-v3` for accuracy; `large-v3-turbo` is a great accuracy/speed balance on a GPU.
 - **Wrong language / quality** — speech is language-auto-detected. Speak clearly; VAD trims silence automatically.
 - **Port in use** — set `WC_PORT` to something else.
+
+---
+
+## License
+
+MIT — see [LICENSE](LICENSE). © 2026 Tejas Solanke.
